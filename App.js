@@ -1,50 +1,61 @@
-import React, { useState } from "react";
-import { Text, View, Button, StyleSheet } from "react-native";
-export default function Contador() {
-const [contagem, setContagem] = useState(0);
-return (
-<View style={styles.container}>
-<Text style={styles.titulo}>Contagem Atual:</Text>
-<Text style={styles.numero}>{contagem}</Text>
-<Button
-title="Incrementar +1"
-onPress={() => setContagem(contagem + 1)}
-/>
+import React from "react";//bibliotecas
+import { StyleSheet, Text, View } from "react-native";
 
-<View>
-  <Button
-  title="Decrementar -1"
-  onPress={() => setContagem(Math.max(0, contagem - 1))}
-/>
-</View>
+export default function App() {//aqui é uma fução
+  // Aqui é um Array de Objetos
+  const tarefas = [
+    { id: 1, descricao: "Estudar ES6+", concluida: true },
+    { id: 2, descricao: "Configurar ambiente Expo", concluida: true },
+    { id: 3, descricao: "Entender o funcionamento do JSX", concluida: false },
+    { id: 4, descricao: "Finalizar Roteiro de Pratica 02", concluida: false },
+  ];
+//Id identificador númerico
+//descricao nome da atividade
+//true ou false indica status da tarefa
+  return (
+    <View style={styles.container}>
+      <Text style={styles.titulo}>Lista de Tarefas</Text>
 
-
-<View>
-<Button
-title="Zerar"
-onPress={() => setContagem(0)}
-/>
-</View>
-
-
-</View>
-);
+      {}
+      {tarefas.map((tarefa) => (
+        <View key={tarefa.id} style={styles.card}>
+          <Text style={styles.textoTarefa}>
+            {tarefa.concluida ? "[OK] " : "[PENDENTE] "}
+            {tarefa.descricao}
+          </Text>
+        </View>
+      ))}
+    </View>
+  );
 }
+
 const styles = StyleSheet.create({
-container: {
-flex: 1,
-justifyContent: "center",
-alignItems: "center",
-backgroundColor: "#ffffff"
-},
-titulo: {
-fontSize: 20,
-color: "#333333"
-},
-numero: {
-fontSize: 48,
-fontWeight: "bold",
-color: "#d21010", /*cor do número*/
-marginBottom: 20
-}
+  container: {
+    flex: 1,
+    backgroundColor: "#f5f5f5",
+    paddingTop: 50,
+    paddingHorizontal: 20,
+  },
+  titulo: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 15,
+    color: "#032b82",
+    textDecorationLine: "underline",
+  },
+  card: {
+    backgroundColor: "#ffffff",
+    padding: 20,
+    borderRadius: 8,
+    marginBottom: 10,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+    },
+    textoTarefa: {
+    fontSize: 16,
+    color: "#100f0f",
+    },
+
 });
